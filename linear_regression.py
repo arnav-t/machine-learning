@@ -1,9 +1,17 @@
 import numpy as np 
 import matplotlib.pyplot as plt 
 
-iters = 500
-alpha = 2
+iters = 1500
+alpha = 0.1
+file = 'ex1data2.txt'
 errors = np.zeros((0,0))
+
+if __name__ == '__main__':
+	import sys
+	file = sys.argv[1]
+	iters = int(input("Enter the number of iterations: "))
+	alpha = float(input("Enter the learning rate: "))
+
 
 def loadData(path):
 	data = np.loadtxt(path, delimiter = ',')
@@ -29,7 +37,7 @@ def normalize(A):
 	return An
 
 
-data = loadData('ex1data2.txt')
+data = loadData(file)
 rows = data.shape[0]
 cols = data.shape[1]
 
@@ -63,7 +71,7 @@ x = np.zeros((1,iters))
 x[0,:] = np.arange(1,iters+1)
 y = np.zeros((1,iters))
 y[0,:] = errors
-plt.plot(x,y)
+plt.plot(x,y,'r,-')
 plt.title('Error function')
 plt.ylabel('Error')
 plt.xlabel('Iterations')
